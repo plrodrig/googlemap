@@ -1,0 +1,44 @@
+<html>
+<head>
+	<style>
+		#mymap{
+		width:100%;
+		height:700px;
+		}
+	</style>
+	<script src="http://maps.google.com/maps/api/js?sensor=false"></script>
+	<script>
+		function init(){
+			var mapDiv = document.getElementById("mymap");
+			var mapOptions = {
+				center: new google.maps.LatLng(37.820667, -122.478526),
+				zoom: 12,
+				mapTypeId: google.maps.MapTypeId.ROADMAP
+			};
+			var map = new google.maps.Map(mapDiv, mapOptions);
+
+			var marker = new google.maps.Marker({
+				position: new google.maps.LatLng(37.820667, -122.478526),
+				map: map,
+				title: "hello",
+				draggable:true,
+			});
+			var infoWindow = new google.maps.InfoWindow({
+				content: "This is <b>Golden gate Bridge</b>"
+			});
+			google.maps.event.addListener(marker, 'click', function(){
+				infoWindow.open(map, marker);
+			});
+		}
+		
+
+		window.onload = init;
+	</script>
+</head>
+<body>
+	<h2>My first Map</h2>
+	<div id="mymap"></div>
+</body>
+
+</html>
+
